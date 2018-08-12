@@ -1,4 +1,6 @@
 FROM centos:6
+LABEL maintainer="jhunk@stsci.edu" \
+      vendor="Space Telescope Science Institute"
 
 RUN yum install -y epel-release \
     && yum clean all
