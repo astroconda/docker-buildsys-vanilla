@@ -131,6 +131,8 @@ function post()
     echo '---'
     python --version
     python -c "import sys; from pprint import pprint; pprint(sys.path)"
+
+    rm -rf $HOME/.config/pip
     rm -rf "${python_tarball}"
     rm -rf "${python_source}"
     echo "All done."
