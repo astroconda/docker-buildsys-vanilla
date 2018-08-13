@@ -11,7 +11,6 @@ function pre()
 {
     curl -LO "${url}"
     tar xf "${tarball}"
-    export KERNEL_BITS=64
 }
 
 
@@ -36,9 +35,10 @@ function build()
 {
     pre
     pushd "${dest}"
-        target="linux-x86_64"
+        export KERNEL_BITS=64
         export PATH="$prefix/bin:$PATH"
         export LDFLAGS="-Wl,-rpath=$prefix/lib"
+        target="linux-x86_64"
 
         ./Configure \
             --prefix="$prefix" \
@@ -60,7 +60,8 @@ function post()
 {
     bundle=$(get_system_cacert)
     install -D -m644 "$bundle" "$prefix/ssl/cert.pem"
-    find $prefix
+    rm -rf "${dest}"
+    rm -rf "${tarball}"
     echo "All done."
 }
 

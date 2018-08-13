@@ -29,15 +29,14 @@ RUN yum install -y \
 COPY build_*.sh /usr/local/bin/
 ENV PATH="/opt/openssl/bin:${PATH}"
 ENV MANPATH="/opt/openssl/share/man:${MANPATH}"
-ENV PKG_CONFIG_PATH="/opt/openssl/lib/pkgconfig:${PKG_CONFIG_PATH}"
+ENV PKG_CONFIG_PATH="/opt/openssl/lib/pkgconfig:/usr/lib/pkgconfig:${PKG_CONFIG_PATH}"
 
 WORKDIR /builder
-RUN build_openssl.sh && rm -rf /builder/*
-RUN build_mpdec.sh && rm -rf /builder/*
-RUN build_python.sh 3.5.5 && rm -rf /builder/*
-RUN build_python.sh 3.6.6 && rm -rf /builder/*
-RUN build_python.sh 3.7.0 && rm -rf /builder/*
-RUN rm -rf /builder && rm -rf /root/.cache/pip
+RUN build_openssl.sh
+RUN build_mpdec.sh
+RUN build_python.sh 3.5.5
+RUN build_python.sh 3.6.6
+RUN build_python.sh 3.7.0
+RUN rm -rf /builder
 
-WORKDIR /
-
+WORKDIR /root

@@ -27,6 +27,8 @@ function build()
 
 function post()
 {
+    rm -rf "${dest}"
+    rm -rf "${tarball}"
     echo "All done."
 }
 
