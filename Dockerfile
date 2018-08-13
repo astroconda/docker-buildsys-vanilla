@@ -8,7 +8,7 @@ RUN yum install -y epel-release \
 RUN yum install -y \
 	gcc \
 	gcc-c++ \
-	gfortran \
+	gcc-gfortran \
 	glibc \
 	perl \
         pkgconfig \
